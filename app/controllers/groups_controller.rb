@@ -40,6 +40,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
      flash[:warning] = "Group Deleted!"
+     redirect_to groups_path
   end
 
   private
