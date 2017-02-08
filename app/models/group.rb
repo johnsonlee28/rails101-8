@@ -3,4 +3,6 @@ class Group < ApplicationRecord
 
   belongs_to :user
   has_many :posts
+  has_many :grouprelationships
+  has_many :members, :through => :grouprelationships, :source => :user
 end
