@@ -3,7 +3,7 @@
    <%= link_to("新增电影片", new_movie_path, class:"btn btn-default pull-right") %>
  </div>
 
- <div class="movie-list" style="padding-top:50px;">
+ <div class="movie-list">
   <% @movies.each do |movie| %>
     <div class="col-md-4">
       <%= link_to movie_path(movie) do %>

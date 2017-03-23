@@ -1,0 +1,24 @@
+<h1 class="text-center">我的收藏</h1>
+
+<div class="container" style="margin-top:50px">
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Post Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td>#</td>
+        <td><%= link_to(movie.title, movie_path(movie)) %></td>
+        <td><%= movie.description %></td>
+        <td><%= movie.reviews.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

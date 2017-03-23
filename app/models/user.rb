@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_movies, :through => :favorites, :source => :movie
 
+  has_many :reviews
+  has_many :movies, through: :reviews, source: :movie
+
+
   def is_member_of?(group)
     participated_groups.include?(group)
   end

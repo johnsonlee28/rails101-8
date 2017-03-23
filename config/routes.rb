@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
   resources :movies do
     put :favorite, on: :member
-    resources :favorite do
-    end
+    resources :reviews
   end
 
+  resources :favorite
 
 
   namespace :account do

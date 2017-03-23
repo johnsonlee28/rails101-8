@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="favorite pull-right" >
       <% if current_user && current_user.is_favorite_of?(@movie) %>
-        <%= link_to("取消收藏", favorite_movie_path(@movie, type:"unfavorite"), method: :put) %>
+        <%= link_to("取消收藏", favorite_movie_path(@movie, type:"unfavorite"), method: :put, class:"btn btn-default") %>
       <% else %>
-        <%= link_to("添加收藏", favorite_movie_path(@movie, type:"favorite"),method: :put) %>
+        <%= link_to("添加收藏", favorite_movie_path(@movie, type:"favorite"),method: :put, class:"btn btn-danger") %>
       <% end %>
   </div>
 
-  <div class="movie-info" style="padding-top:30px;">
+  <div class="movie-info" >
      <div class="col-md-6">
        <% if @movie.image.present? %>
          <%= image_tag(@movie.image.medium.url, class:"thumbnail") %>
@@ -16,14 +16,42 @@
        <% end %>
      </div>
      <div class="col-md-6">
-        <h3 class="movie-title">
-          <%= @movie.title %>
-        </h3>
-        <p class="movie-description">
-            <%= @movie.description %>
-        </p>
+       <div class="info-head">
+          <h3 class="movie-title">
+            <%= @movie.title %>
+          </h3>
+          <p class="movie-description">
+              <%= @movie.description %>
+          </p>
+       </div>
+        <div class="comment">
+            <% @movie.reviews.each do |review| %>
+              <div class="review-content">
+                <div class="review-time pull-left" >
+                  <%= time_ago_in_words(review.created_at) %> <strong>ago</strong>
+                  by <strong><%= review.user.email %></strong>
+                </div>
+                  <% if review.user == current_user %>
+                     <%= link_to("Delete", movie_review_path(@movie, review), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm pull-right") %>
+                  <% end %>
+                <br>
+                <div class="review-body-view">
+                  <%= review.content %>
+                  <hr>
+                </div>
+
+              </div>
+            <% end %>
+        </div>
+        <div class="review-body">
+          <% if current_user && current_user.is_favorite_of?(@movie) %>
+            <%= simple_form_for([@movie, @movie.reviews.build]) do |f| %>
+              <%= f.text_area :content, class:"form-control" %>
+              <br>
+              <%= f.submit "提交评论", data:{disable_with:"Submitting..."}, class:"btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
      </div>
    </div>
-
-
   </div>
