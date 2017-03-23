@@ -38,7 +38,20 @@ class MoviesController < ApplicationController
     redirect_to movie_path
   end
 
-
+  def favorite
+    @movie = Movie.find(params[:id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorite_movies << @movie
+      redirect_to :back
+    elsif type == "unfavorite"
+      current_user.favorite_movies.delete(@movie)
+      redirect_to :back
+    else
+      redirect_to :back
+    end
+  end
+  
   private
   def movie_params
     params.require(:movie).permit(:title,:image,:description)

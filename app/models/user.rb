@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :grouprelationships
   has_many :participated_groups, :through => :grouprelationships, :source => :group
 
+  has_many :favorites
+  has_many :favorite_movies, :through => :favorites, :source => :movie
+
   def is_member_of?(group)
     participated_groups.include?(group)
   end
@@ -19,5 +22,9 @@ class User < ApplicationRecord
 
   def quit!(group)
     participated_groups.delete(group)
+  end
+
+  def is_favorite_of?(job)
+    favorite_movies.include?(job)
   end
 end

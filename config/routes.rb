@@ -12,8 +12,12 @@ Rails.application.routes.draw do
 
 
   resources :movies do
-    resources :groups
+    put :favorite, on: :member
+    resources :favorite do
+    end
   end
+
+
 
   namespace :account do
     resources :groups
