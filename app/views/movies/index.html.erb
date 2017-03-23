@@ -1,0 +1,20 @@
+<div class="container-fluid">
+ <div class="new-movie">
+   <%= link_to("新增电影片", new_movie_path, class:"btn btn-default pull-right") %>
+ </div>
+
+ <div class="movie-list" style="padding-top:50px;">
+  <% @movies.each do |movie| %>
+    <div class="col-md-4">
+      <%= link_to movie_path(movie) do %>
+        <% if movie.image.present? %>
+            <%= image_tag(movie.image.thumb.url, class:"thumbnail") %>
+        <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"thumbnail") %>
+        <% end %>
+      <% end %>
+      <%= movie.title %>
+    </div>
+  <% end %>
+ </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="text-center" style="padding-bottom:50px;">
+    <h2>新建电影</h2>
+  </div>
+  <div class="col-md-10 col-md-offset-1">
+    <%= simple_form_for @movie do |f| %>
+      <div class="movie-group">
+        <%= f.input :title, label:"电影名字" %>
+      </div>
+
+      <div class="movie-group">
+        <%= f.input :description, label:"电影描述" %>
+      </div>
+
+      <div class="movie-group">
+        <%= f.input :image, as: :file %>
+      </div>
+
+      <%= f.submit "Submit", data:{disable_with:"Submitting..."}, class:"btn btn-default" %>
+    <% end %>
+  </div>
+</div>
