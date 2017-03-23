@@ -9,6 +9,10 @@
 
 
 /* movie-show page */
+.movie-description{
+  height:80px;
+  overflow: auto;
+}
 .comment{
   border: 1px solid #ccc;
   border-top-left-radius: 5px;
