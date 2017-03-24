@@ -4,10 +4,6 @@ class MoviesController < ApplicationController
     @movies = Movie.all
   end
 
-  def show
-    @movie = Movie.find(params[:id])
-  end
-
   def new
     @movie = Movie.new
   end
@@ -20,6 +16,10 @@ class MoviesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
   end
 
   def edit
@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to movie_path
+    redirect_to movies_path
   end
 
   def favorite
@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   private
   def movie_params
     params.require(:movie).permit(:title,:image,:description)
