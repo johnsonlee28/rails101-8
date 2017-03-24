@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :movies, through: :reviews, source: :movie
 
+  has_many :topics
+
 
   def is_member_of?(group)
     participated_groups.include?(group)
