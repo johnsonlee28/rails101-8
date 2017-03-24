@@ -1,4 +1,7 @@
 <div class="container-fluid">
+  <% if current_user.admin? %>
+    <%= link_to("修改电影", edit_movie_path(@movie), class:"btn btn-default pull-right") %>
+  <% end %>
   <div class="favorite pull-right" >
       <% if current_user && current_user.is_favorite_of?(@movie) %>
         <%= link_to("取消收藏", favorite_movie_path(@movie, type:"unfavorite"), method: :put, class:"btn btn-default") %>
@@ -21,7 +24,7 @@
             <%= @movie.title %>
           </h3>
           <p class="movie-description">
-              <%= simple_format(@movie.description) %>
+              <%= @movie.description %>
           </p>
        </div>
         <div class="comment">

@@ -31,4 +31,9 @@ class User < ApplicationRecord
   def is_favorite_of?(job)
     favorite_movies.include?(job)
   end
+
+  def admin?
+    is_admin
+  end
+
 end

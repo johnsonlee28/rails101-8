@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="text-center" style="padding-bottom:50px;">
-    <h2>新建电影内容</h2>
+    <h2>修改电影内容</h2>
   </div>
   <div class="col-md-10 col-md-offset-1">
     <%= simple_form_for @movie do |f| %>
@@ -11,6 +11,11 @@
       <div class="movie-group">
         <%= f.input :description, label:"电影描述" %>
       </div>
+
+      <% if @movie.image.present? %>
+        <span>目前商品图</span><br>
+         <%= image_tag(@movie.image.thumb.url) %>
+      <% end %>
 
       <div class="movie-group">
         <%= f.input :image, as: :file %>
