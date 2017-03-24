@@ -21,7 +21,7 @@
             <%= @movie.title %>
           </h3>
           <p class="movie-description">
-              <%= @movie.description %>
+              <%= simple_format(@movie.description) %>
           </p>
        </div>
         <div class="comment">
