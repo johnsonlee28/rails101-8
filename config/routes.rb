@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :movies do
     put :favorite, on: :member
     resources :reviews
+    resources :topics
   end
 
   resources :favorite
