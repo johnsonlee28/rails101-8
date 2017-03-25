@@ -1,0 +1,32 @@
+<div class="container-fluid">
+
+  <%= link_to("新增主题", new_movie_topic_path, class:"btn btn-danger pull-right") %>
+<h1 class="text-center" style="padding:30px 0px;">评论主题</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th width="20%">Last Update</th>
+        <th width="10%">Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @topics.each_with_index do |topic, index| %>
+      <tr>
+        <td><%= index +1 %></td>
+        <td><%= topic.movie.title %></td>
+        <td><%= topic.content %></td>
+        <td><%= topic.updated_at %></td>
+        <td>
+        <% if current_user == topic.user %>
+          <%= link_to("Delete", movie_topic_path(@movie,topic),method: :delete) %>
+        <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
