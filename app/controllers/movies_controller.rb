@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    @movie.tickets.build
   end
 
   def create
@@ -25,6 +26,7 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id])
+    @movie.tickets.build if @movie.tickets.empty?
   end
 
   def update
@@ -55,6 +57,6 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title,:image,:description)
+    params.require(:movie).permit(:title,:image,:description, :tickets_attributes => [:id, :cinema_name, :quantity, :location, :_destroy])
   end
 end

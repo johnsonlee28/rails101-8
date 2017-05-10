@@ -16,6 +16,8 @@
         <%= f.input :image, as: :file %>
       </div>
 
+      <%= render :partial => "form", :locals => {:f => f} %>
+
       <%= f.submit "Submit", data:{disable_with:"Submitting..."}, class:"btn btn-default" %>
     <% end %>
   </div>
